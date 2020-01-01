@@ -1,0 +1,20 @@
+{
+  "name": "myapp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "ruizhengyun <ruizhengyun@gmail.com> (https://github.com/ruizhengyun)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "koa": "^2.11.0",
+    "raw-body": "^2.4.1",
+    "request": "^2.88.0",
+    "sha1": "^1.1.1",
+    "xml2js": "^0.4.23"
+  }
+}
