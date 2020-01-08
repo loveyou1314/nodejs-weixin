@@ -37,17 +37,18 @@ function AccessTokenInfo(opts) {
 
       if (that.isValidAccessToken(data)) {
         //判断是否有效
-        // Promise.resolve(data);
-        // 取到合法 access_token
-        that.access_token = data.access_token;
-        that.expires_in = data.expires_in;
-        that.saveAccessToken(data);
+        return Promise.resolve(data);
       } else {
         // 不合法就重新更新 access_token
         return that.updateAccessToken();
       }
     })
-    // .then(function(data) {});
+    .then(data => {
+      // 取到合法 access_token
+      that.access_token = data.access_token;
+      that.expires_in = data.expires_in;
+      that.saveAccessToken(data);
+    });
 }
 
 // 验证 access_token 是否有效
@@ -99,9 +100,11 @@ module.exports = function(opts) {
     const sha = sha1(str);
 
     if (sha === signature) {
+      console.log('来源于微信');
       this.body = echostr + '';
     } else {
-      this.body = 'wrong';
+      console.log('不是来源于微信');
+      this.body = '不是来源于微信';
     }
   };
 };

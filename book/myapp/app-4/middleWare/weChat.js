@@ -32,10 +32,12 @@ module.exports = function(opts) {
      * POST
      */
     if (sha !== signature) {
-      this.body = '❌';
+      console.log('不是来源于微信');
+      this.body = '不是来源于微信';
       return false;
     }
     if (this.method === 'GET') {
+      console.log('来源于微信');
       this.body = echostr + '';
     } else if (this.method === 'POST') {
       // 依赖包 raw-body 可以把 this 上的 request 对象（http 模块中的 request 对象），拼写它的数据，最终拿到一个 buffer 的 XML
@@ -61,11 +63,10 @@ module.exports = function(opts) {
             <Content><![CDATA[${`你好，${message.FromUserName}，欢迎来到本公众号。`}]]></Content>
             <MsgId>1234567890123456</MsgId>
           </xml>`;
-          console.log('message', this.body);
+          console.log('xml', this.body);
           return;
         }
       }
-      console.log('message', message);
     }
   };
 };

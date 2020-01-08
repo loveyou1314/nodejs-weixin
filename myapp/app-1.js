@@ -33,13 +33,13 @@ app.use(function*(next) {
   const sha = sha1(str);
 
   if (sha === signature) {
+    console.log('来源于微信');
     this.body = echostr + '';
   } else {
-    this.body = 'wrong';
+    console.log('不是来源于微信');
+    this.body = '不是来源于微信';
   }
 });
 
 app.listen(PORT);
 console.log(`正在监听：${PORT}`);
-
-app.listen();

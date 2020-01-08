@@ -45,3 +45,10 @@
 - 有一些其他的后端语言经验，无论是PHP/Java/Ruby 均可，主要整明白网络 http 请求从开始到结束中间所经过的环节；
   
 ## 文档和示例地址
+
+- [github 地址](https://github.com/ruizhengyun/nodejs-weixin)
+- [欢迎评论](https://github.com/ruizhengyun/nodejs-weixin/issues/1)
+
+## 你可以
+
+[下一篇：关于微信](./weixin.md)
