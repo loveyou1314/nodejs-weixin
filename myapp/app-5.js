@@ -8,12 +8,12 @@
 const Koa = require('koa');
 const weChatMiddleWare = require('./app-5/middleWare/weChat');
 const config = require('./app-5/config/default.config');
-const weixin = require('./app-5/util/weixin');
+const message = require('./app-5/util/message');
 
 const app = new Koa();
 
 // 中间件
-app.use(weChatMiddleWare(config.wechat, weixin.messageReply));
+app.use(weChatMiddleWare(config.wechat, message.reply));
 
 app.listen(config.PORT);
 console.log(`正在监听：${config.PORT}`);

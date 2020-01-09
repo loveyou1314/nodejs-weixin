@@ -10,11 +10,11 @@
 const sha1 = require('sha1');
 const rawBody = require('raw-body');
 const util = require('../util');
-const AccessTokenInfo = require('../util/AccessTokenInfo');
+const WeixinApi = require('../util/WeixinApi');
 
 // 中间件
 module.exports = function(opts, handler) {
-  const accessTokenInfo = new AccessTokenInfo(opts);
+  const weixinApi = new WeixinApi(opts);
 
   return function*(next) {
     const token = opts.token;
@@ -51,7 +51,7 @@ module.exports = function(opts, handler) {
       // 处理消息
       yield handler.call(this, next);
 
-      accessTokenInfo.reply.call(this);
+      weixinApi.reply.call(this);
     }
   };
 };
