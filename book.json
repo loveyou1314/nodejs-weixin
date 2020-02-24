@@ -1,14 +1,12 @@
 {
-  "title": "Nodejs 开发微信公众号号",
-  "description": "Nodejs 开发微信公众号号",
+  "title": "Nodejs 开发微信公众号",
+  "description": "Nodejs 开发微信公众号",
   "author": "ruizhengyun <ruizhengyun@gmail.com>",
   "language": "zh-hans",
   "gitbook": "3.2.3",
   "links": {
     "sidebar": {
-      "我的博客": "http://ruizhengyun.cn/",
-      "我的小书": "http://ruizhengyun.cn/book",
-      "本小书示例": "http://ruizhengyun.cn/nodejs-weixin/myapp/dist"
+      "我的博客": "http://ruizhengyun.cn/"
     }
   },
   "plugins": [
@@ -29,16 +27,15 @@
     "auto-scroll-table",
     "custom-favicon",
     "lightbox",
-    "anchor-navigation-ex",
-    "tbfed-pagefooter"
+    "anchor-navigation-ex"
   ],
   "pluginsConfig": {
-    "favicon": "http://ruizhengyun.cn/images/wx/favicon.ico",
+    "favicon": "http://ruizhengyun.cn/favicon.ico",
     "github": {
       "url": "https://github.com/ruizhengyun/nodejs-weixin"
     },
     "insert-logo": {
-      "url": "http://ruizhengyun.cn/images/wx/logo.png",
+      "url": "http://ruizhengyun.cn/static/media/logo.3c2359bf.png",
       "style": "background: none; max-height: 66px; min-height: 66px"
     },
     "sharing": {
@@ -67,11 +64,6 @@
         "level2Icon": "fa fa-hand-o-right",
         "level3Icon": "fa fa-hand-o-right"
       }
-    },
-    "tbfed-pagefooter": {
-      "copyright": "Copyright &copy ruizhengyun.cn 2019",
-      "modify_label": "修订时间：",
-      "modify_format": "YYYY-MM-DD HH:mm:ss"
     }
   }
 }

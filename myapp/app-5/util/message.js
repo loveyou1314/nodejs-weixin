@@ -3,7 +3,7 @@
  * @创建日期: 2019-12-30 13:20:26
  * @最近更新: pr
  * @更新时间: 2019-12-30 13:20:26
- * @文件描述: 消息
+ * @文件描述: 消息模块
  */
 const config = require('../config/default.config');
 const WeixinApi = require('./WeixinApi');
@@ -195,8 +195,6 @@ exports.reply = function*(next) {
       reply = `${imageReply}\r\n${newsReply}\r\n${voiceReply}\r\n${videoReply}`;
     }
     this.body = reply;
-  } else if (message.MsgType === 'voice') {
-    this.body = 'voice';
   }
 
   yield next;

@@ -6,7 +6,7 @@
 
 1.[进入微信官方文档（公众号）](https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html);
 
-2.接口测试号申请，微信公众号的注册有一定门槛，可以用测试账号，我们的目的是为了尝试编程，要明白真正要关注的点。
+2.接口测试号申请，微信公众号的注册有一定门槛，需要占用太多的开发时间，这与我们初衷相违背。可以用测试账号，我们的目的是为了尝试编程，要明白真正要关注的点。
 ![接口测试号申请](./assets/apply-1.png)
 
 3.测试账号管理

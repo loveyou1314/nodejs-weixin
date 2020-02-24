@@ -3,13 +3,13 @@
  * @创建日期: 2019-12-30 13:20:26
  * @最近更新: pr
  * @更新时间: 2019-12-30 13:20:26
- * @文件描述:
+ * @文件描述: 消息模块
  */
 const config = require('../config/default.config');
-const AccessTokenInfo = require('./AccessTokenInfo');
-const accessTokenInfo = new AccessTokenInfo(config.wechat);
+const WeixinApi = require('./WeixinApi');
+const weixinApi = new WeixinApi(config.wechat);
 
-exports.messageReply = function*(next) {
+exports.reply = function*(next) {
   const message = this.weixin;
 
   // 事件推送
@@ -39,7 +39,7 @@ exports.messageReply = function*(next) {
     if (content === '文本') {
       reply = `hi，${message.Content}\r\n我是文本，今天开心么？`;
     } else if (content === '图片') {
-      const data = yield accessTokenInfo.uploadMaterial(
+      const data = yield weixinApi.uploadMaterial(
         'image',
         __dirname + '/assets/ngrok.png'
       );
@@ -66,7 +66,7 @@ exports.messageReply = function*(next) {
         }
       ];
     } else if (content === '图片图文') {
-      const imageData = yield accessTokenInfo.uploadMaterial(
+      const imageData = yield weixinApi.uploadMaterial(
         'image',
         __dirname + '/assets/ngrok.png',
         {}
@@ -88,13 +88,9 @@ exports.messageReply = function*(next) {
       };
 
       // 上传永久图文
-      const mediaData = yield accessTokenInfo.uploadMaterial(
-        'news',
-        mediaParam,
-        {}
-      );
+      const mediaData = yield weixinApi.uploadMaterial('news', mediaParam, {});
 
-      const data = yield accessTokenInfo.fetchMaterial(
+      const data = yield weixinApi.fetchMaterial(
         'news',
         mediaData.media_id,
         {}
@@ -117,7 +113,7 @@ exports.messageReply = function*(next) {
     } else if (content === '语音') {
       reply = `hi，我是语音，今天开心么？`;
     } else if (content === '视频') {
-      const data = yield accessTokenInfo.uploadMaterial(
+      const data = yield weixinApi.uploadMaterial(
         'video',
         __dirname + '/assets/video.mp4'
       );
@@ -128,7 +124,7 @@ exports.messageReply = function*(next) {
         mediaId: data.media_id
       };
     } else if (content === '视频') {
-      const data = yield accessTokenInfo.uploadMaterial(
+      const data = yield weixinApi.uploadMaterial(
         'video',
         __dirname + '/assets/video.mp4',
         {
@@ -143,7 +139,7 @@ exports.messageReply = function*(next) {
         mediaId: data.media_id
       };
     } else if (content === '音乐') {
-      const data = yield accessTokenInfo.uploadMaterial(
+      const data = yield weixinApi.uploadMaterial(
         'image',
         __dirname + '/assets/ngrok.png'
       );
@@ -156,7 +152,7 @@ exports.messageReply = function*(next) {
       };
     } else if (content === '素材总数') {
       // 素材总数
-      const counts = yield accessTokenInfo.fetchCountMaterial();
+      const counts = yield weixinApi.fetchCountMaterial();
       console.log('素材总数', JSON.stringify(counts));
       if (counts.errcode) {
         reply = counts.errmsg;
@@ -165,15 +161,15 @@ exports.messageReply = function*(next) {
       }
     } else if (content === '素材列表') {
       // 素材列表
-      const imageList = yield accessTokenInfo.batchMaterial('image', 0, 20);
-      const newsList = yield accessTokenInfo.batchMaterial('news', 0, 20);
-      const voiceList = yield accessTokenInfo.batchMaterial('voice', 0, 20);
-      const videoList = yield accessTokenInfo.batchMaterial('video', 0, 20);
+      const imageList = yield weixinApi.batchMaterial('image', 0, 20);
+      const newsList = yield weixinApi.batchMaterial('news', 0, 20);
+      const voiceList = yield weixinApi.batchMaterial('voice', 0, 20);
+      const videoList = yield weixinApi.batchMaterial('video', 0, 20);
       // const list = yield [
-      //   (accessTokenInfo.batchMaterial('image', 0, 20),
-      //   accessTokenInfo.batchMaterial('news', 0, 20),
-      //   accessTokenInfo.batchMaterial('voice', 0, 20),
-      //   accessTokenInfo.batchMaterial('video', 0, 20))
+      //   (weixinApi.batchMaterial('image', 0, 20),
+      //   weixinApi.batchMaterial('news', 0, 20),
+      //   weixinApi.batchMaterial('voice', 0, 20),
+      //   weixinApi.batchMaterial('video', 0, 20))
       // ];
       console.log('图片素材列表', imageList);
       console.log('图文素材列表', newsList);
@@ -199,8 +195,6 @@ exports.messageReply = function*(next) {
       reply = `${imageReply}\r\n${newsReply}\r\n${voiceReply}\r\n${videoReply}`;
     }
     this.body = reply;
-  } else if (message.MsgType === 'voice') {
-    this.body = 'voice';
   }
 
   yield next;
